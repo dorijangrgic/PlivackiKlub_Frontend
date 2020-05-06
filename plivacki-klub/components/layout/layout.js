@@ -3,7 +3,7 @@ import CustomNavbar from "../../components/navbar/navbar";
 import styles from "./layout.module.css";
 import { Container, Row, Col } from "reactstrap";
 
-const Layout = ({ children, title }) => {
+const Layout = ({ children, title, hideNav }) => {
   return (
     <>
       <Head>
@@ -14,7 +14,7 @@ const Layout = ({ children, title }) => {
         />
       </Head>
 
-      <CustomNavbar />
+      <CustomNavbar hideNav={hideNav}/>
 
       <div className={styles.marginTop}>
         <Container>

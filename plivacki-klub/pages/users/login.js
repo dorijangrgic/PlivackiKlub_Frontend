@@ -4,7 +4,7 @@ import LoginContainer from "../../containers/login";
 
 const Login = () => {
   return (
-    <Layout title="Login">
+    <Layout title="Login" hideNav={true}>
         <LoginContainer />
     </Layout>
   );

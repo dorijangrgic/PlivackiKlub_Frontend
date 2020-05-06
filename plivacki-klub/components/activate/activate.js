@@ -1,27 +1,26 @@
-// component handles the rendering
-const LoginComponent = ({ register, handleSubmit, onSubmit, errors }) => {
+const ActivateComponent = ({ handleSubmit, onSubmit, register, errors }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>Log in</h1>
+      <h1>Activate your profile</h1>
       <div className="form-group">
-        <label htmlFor="usernameOrEmailInput">Email address or Username</label>
+        <label htmlFor="username">Username</label>
         <input
           type="text"
           className="form-control"
-          id="usernameOrEmailInput"
+          id="username"
           aria-describedby="emailHelp"
-          placeholder="Enter email/username"
-          name="usernameOrEmail"
+          placeholder="Enter username"
+          name="username"
           ref={register({ required: true })}
         />
-        {errors.usernameOrEmail && <p>This is required</p>}
+        {errors.username && <p>This is required</p>}
       </div>
       <div className="form-group">
-        <label htmlFor="passwordInput">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
           className="form-control"
-          id="passwordInput"
+          id="password"
           placeholder="Password"
           name="password"
           ref={register({ required: true, minLength: 8 })}
@@ -38,4 +37,4 @@ const LoginComponent = ({ register, handleSubmit, onSubmit, errors }) => {
   );
 };
 
-export default LoginComponent;
+export default ActivateComponent;

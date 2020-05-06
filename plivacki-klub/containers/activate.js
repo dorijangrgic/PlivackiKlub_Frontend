@@ -1,35 +1,33 @@
 import React, { useState } from "react";
 import Router from "next/router";
-import LoginComponent from "../components/login/login";
+import ActivateComponent from "../components/activate/activate";
 import { useForm } from "react-hook-form";
-import { login } from "../services/user";
+import { activate } from "../services/user";
 import CustomModal from "../components/modal/modal";
 
-// container handles the logic
-const LoginContainer = () => {
+const ActivateContainer = ({ userId }) => {
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = async data => {
-    const response = await login(data);
+    const response = await activate(data, userId);
 
-    // console.log("Container", response);
+    console.log("Container", response);
 
-    if (!response["token"]) {
+    if (response) {
       setShowModal(true);
       setModalMessage(response.message);
       // console.log(response.message);
     } else {
-      localStorage.setItem("token", response.token);
-      Router.push("/dashboard/dashboard");
+      Router.push("/users/login");
       // console.log(response.token);
     }
   };
 
   return (
     <>
-      <LoginComponent
+      <ActivateComponent
         register={register}
         handleSubmit={handleSubmit}
         onSubmit={onSubmit}
@@ -44,4 +42,4 @@ const LoginContainer = () => {
   );
 };
 
-export default LoginContainer;
+export default ActivateContainer;
