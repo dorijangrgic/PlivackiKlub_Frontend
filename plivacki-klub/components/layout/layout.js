@@ -14,13 +14,13 @@ const Layout = ({ children, title, hideNav }) => {
         />
       </Head>
 
-      <CustomNavbar hideNav={hideNav}/>
+      <CustomNavbar hideNav={hideNav} />
 
       <div className={styles.marginTop}>
         <Container>
-          <Row>
-            <Col>{children}</Col>
-          </Row>
+            <Row>
+              <Col>{children}</Col>
+            </Row>
         </Container>
       </div>
     </>

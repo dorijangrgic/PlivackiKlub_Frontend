@@ -22,7 +22,7 @@ const LoginContainer = () => {
       // console.log(response.message);
     } else {
       localStorage.setItem("token", response.token);
-      Router.push("/dashboard/dashboard");
+      Router.push("/dashboard/");
       // console.log(response.token);
     }
   };

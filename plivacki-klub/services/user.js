@@ -1,4 +1,4 @@
-import base_url from "./API";
+import {base_url} from "./API";
 
 const login = async data => {
   const response = await fetch(`${base_url}/users/login`, {

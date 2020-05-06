@@ -24,12 +24,9 @@ const LoginComponent = ({ register, handleSubmit, onSubmit, errors }) => {
           id="passwordInput"
           placeholder="Password"
           name="password"
-          ref={register({ required: true, minLength: 8 })}
+          ref={register({ required: true })}
         />
         {errors.password && <p>This is required</p>}
-        {errors.password && errors.password.type === "minLength" && (
-          <p>Password has to be longer than 8 charachters</p>
-        )}
       </div>
       <button type="submit" className="btn btn-primary">
         Submit
