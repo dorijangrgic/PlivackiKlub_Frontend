@@ -1,0 +1,7 @@
+.container {
+    position: fixed;
+    display: flex;
+    height: 200pt;
+    width: 400pt;
+    background: hotpink;
+}
