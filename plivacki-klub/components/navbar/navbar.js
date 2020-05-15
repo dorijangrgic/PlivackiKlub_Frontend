@@ -52,7 +52,7 @@ const CustomNavbar = ({ hideNav = false }) => {
             <NavLink href="/notifications">Notifications</NavLink>
           </NavItem>
           <NavItem>
-            <Button onClick={logOut} color="primary">Log out</Button>
+            <Button onClick={logOut} >Log out</Button>
           </NavItem>
         </Nav>
       </Collapse>

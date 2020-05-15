@@ -1,3 +1,5 @@
+import { Button } from "reactstrap";
+
 const ActivateComponent = ({ handleSubmit, onSubmit, register, errors }) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -30,9 +32,9 @@ const ActivateComponent = ({ handleSubmit, onSubmit, register, errors }) => {
           <p>Password has to be longer than 8 charachters</p>
         )}
       </div>
-      <button type="submit" className="btn btn-primary">
+      <Button type="submit" className="btn btn-primary">
         Submit
-      </button>
+      </Button>
     </form>
   );
 };

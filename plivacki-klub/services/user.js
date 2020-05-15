@@ -1,4 +1,4 @@
-import {base_url} from "./API";
+import { base_url, checkToken, checkUserRole } from "./API";
 
 const login = async data => {
   const response = await fetch(`${base_url}/users/login`, {
@@ -24,8 +24,30 @@ const activate = async (data, userId) => {
   });
 
   console.log("Service", response);
-  if(response.status === 200) return;
+  if (response.status === 200) return;
   else return response.json(); // vraca body responsa
 };
 
-export { login, activate };
+const registerUser = async data => {
+  const token = checkToken();
+
+  const response = await fetch(`${base_url}/users/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(data)
+  });
+
+  console.log("Service", response);
+  if(response.status === 400 || response.status === 200){
+    return response.json();
+  } else {
+    return ;
+  }
+};
+
+
+
+export { login, activate, registerUser };

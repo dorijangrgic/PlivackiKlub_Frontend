@@ -15,6 +15,7 @@ import {
 } from "reactstrap";
 import styles from "./table.module.css";
 import ActionContainer from "../../containers/action";
+import Router from "next/router";
 
 // reusable table component
 // add filter and pagination
@@ -24,12 +25,18 @@ const TableComponent = ({
   name,
   actions,
   queryParams,
-  updateFilterAndPagination,
-  addNew
+  updateFilterAndPagination
 }) => {
-
-  console.log("Add new", addNew);
   
+  const addNew = () => {
+    console.log(`Dodajem novi ${name}`);
+    Router.push(`/${name}/create`);
+  };
+
+  const actionClick = (action, id) => {
+    console.log("Akcija", action, id);
+    Router.push(`/${name}/${action}/${id}`);
+  };
 
   return (
     <>
@@ -38,13 +45,13 @@ const TableComponent = ({
           <Col md={6} className={styles.textLeft}>
             {name}
           </Col>
-          <Col md={6} className={styles.textRight} hidden={!addNew}>
-            <p>Dodaj novi</p>
+          <Col md={6} className={styles.textRight}>
+            <Button onClick={addNew}>Add new</Button>
           </Col>
         </Row>
       </Container>
       <Table hover striped bordered>
-        <thead>
+        <thead className="thead-dark">
           <tr>
             {attributes.map(element => {
               // to show attributes from nested objects
@@ -54,6 +61,7 @@ const TableComponent = ({
               }
               return (
                 <th
+                  className="text-center"
                   key={element}
                   onClick={updateFilterAndPagination("offset")}
                   value={element}
@@ -62,7 +70,7 @@ const TableComponent = ({
                 </th>
               );
             })}
-            <th>Actions</th>
+            <th className="text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -75,15 +83,36 @@ const TableComponent = ({
                     let nested = att[0];
                     let attribute = att[1];
                     if (element[nested]) {
-                      return <td key={att}>{element[nested][attribute]}</td>;
+                      return (
+                        <td className="text-center" key={att}>
+                          {element[nested][attribute]}
+                        </td>
+                      );
                     }
                   }
-                  return <td key={att}>{element[att]}</td>;
+                  let value;
+                  if (att === "verified") {
+                    value = element[att] ? "True" : "False";
+                  } else {
+                    value = element[att];
+                  }
+                  return (
+                    <td className="text-center" key={att}>
+                      {value}
+                    </td>
+                  );
                 })}
-                <td>
+                <td className="text-center">
                   <ButtonGroup>
                     {actions.map(action => {
-                      return <Button key={action}>{action}</Button>;
+                      return (
+                        <Button
+                          onClick={() => actionClick(action, element.id)}
+                          key={action}
+                        >
+                          {action}
+                        </Button>
+                      );
                     })}
                   </ButtonGroup>
                 </td>

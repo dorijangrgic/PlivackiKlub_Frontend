@@ -37,4 +37,31 @@ const getAll = async (name, queryParams) => {
   });
 };
 
-export { base_url, checkUserRole, getAll };
+const getSingle = async (name, id) => {
+  const token = checkToken();
+
+  return await fetch(`${base_url}/${name}/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    }
+  });
+};
+
+const update = async (data, name, id) => {
+  const token = checkToken();
+
+  const response = await fetch(`${base_url}/${name}/${id}`,{
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(data)
+  });
+
+  console.log("Response", response);
+  return response.json();
+}
+
+export { base_url, checkUserRole, getAll, checkToken, getSingle, update };

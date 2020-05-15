@@ -5,7 +5,6 @@ import Router from "next/router";
 
 const TableContainer = ({ name, attributes, actions }) => {
   let userRole;
-  let addNew = true;
 
   const [data, setData] = useState([]);
   const [queryParams, setQueryParams] = useState({
@@ -22,13 +21,11 @@ const TableContainer = ({ name, attributes, actions }) => {
     if (userRole === 3) {
       // swimmer can only READ
       actions.splice(actions.length - 2, actions.length);
-      addNew = false;
     }
     if (userRole === 2) {
       // coach can READ all and CREATE/EDIT tasks, attendances, notifications and trainings
       if (name === "clubs" || name === "groups" || name === "users") {
         actions.splice(actions.length - 2, actions.length);
-        addNew = false;
       }
     }
     if (userRole === 1) {
@@ -40,7 +37,6 @@ const TableContainer = ({ name, attributes, actions }) => {
         name === "trainings"
       ) {
         actions.splice(actions.length - 2, actions.length);
-        addNew = false;
       }
     }
   };
@@ -82,7 +78,6 @@ const TableContainer = ({ name, attributes, actions }) => {
       actions={actions}
       queryParams={queryParams}
       updateFilterAndPagination={updateFilterAndPagination}
-      addNew={addNew}
     />
   );
 };

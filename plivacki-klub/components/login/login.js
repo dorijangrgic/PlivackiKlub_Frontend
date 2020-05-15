@@ -1,3 +1,5 @@
+import {Button} from "reactstrap";
+
 // component handles the rendering
 const LoginComponent = ({ register, handleSubmit, onSubmit, errors }) => {
   return (
@@ -28,9 +30,9 @@ const LoginComponent = ({ register, handleSubmit, onSubmit, errors }) => {
         />
         {errors.password && <p>This is required</p>}
       </div>
-      <button type="submit" className="btn btn-primary">
+      <Button type="submit" className="btn btn-primary">
         Submit
-      </button>
+      </Button>
     </form>
   );
 };
