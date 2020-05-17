@@ -14,7 +14,6 @@ import {
   PaginationLink
 } from "reactstrap";
 import styles from "./table.module.css";
-import ActionContainer from "../../containers/action";
 import Router from "next/router";
 
 // reusable table component
@@ -27,7 +26,6 @@ const TableComponent = ({
   queryParams,
   updateFilterAndPagination
 }) => {
-  
   const addNew = () => {
     console.log(`Dodajem novi ${name}`);
     Router.push(`/${name}/create`);
@@ -45,9 +43,11 @@ const TableComponent = ({
           <Col md={6} className={styles.textLeft}>
             {name}
           </Col>
-          <Col md={6} className={styles.textRight}>
-            <Button onClick={addNew}>Add new</Button>
-          </Col>
+          {name === "attendances" ? null : (
+            <Col md={6} className={styles.textRight}>
+              <Button onClick={addNew}>Add new</Button>
+            </Col>
+          )}
         </Row>
       </Container>
       <Table hover striped bordered>
@@ -91,7 +91,7 @@ const TableComponent = ({
                     }
                   }
                   let value;
-                  if (att === "verified") {
+                  if (att === "verified" || att === "finished") {
                     value = element[att] ? "True" : "False";
                   } else {
                     value = element[att];

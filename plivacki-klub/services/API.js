@@ -37,6 +37,22 @@ const getAll = async (name, queryParams) => {
   });
 };
 
+
+const getAllById = async (name, subName, nameId) => {
+  const token = checkToken();
+
+  return await fetch(`${base_url}/${name}/${nameId}/${subName}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  // console.log("Service", response);
+  // return response;
+};
+
 const getSingle = async (name, id) => {
   const token = checkToken();
 
@@ -51,7 +67,7 @@ const getSingle = async (name, id) => {
 const update = async (data, name, id) => {
   const token = checkToken();
 
-  const response = await fetch(`${base_url}/${name}/${id}`,{
+  const response = await fetch(`${base_url}/${name}/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -62,6 +78,31 @@ const update = async (data, name, id) => {
 
   console.log("Response", response);
   return response.json();
-}
+};
 
-export { base_url, checkUserRole, getAll, checkToken, getSingle, update };
+const create = async (data, name) => {
+  const token = checkToken();
+
+  const response = await fetch(`${base_url}/${name}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(data)
+  });
+
+  console.log("Service", response);
+  return response;
+};
+
+export {
+  base_url,
+  checkUserRole,
+  getAll,
+  checkToken,
+  getSingle,
+  update,
+  create,
+  getAllById
+};

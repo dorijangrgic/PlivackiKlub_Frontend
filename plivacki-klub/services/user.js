@@ -41,13 +41,11 @@ const registerUser = async data => {
   });
 
   console.log("Service", response);
-  if(response.status === 400 || response.status === 200){
+  if (response.status === 400 || response.status === 200) {
     return response.json();
   } else {
-    return ;
+    return;
   }
 };
-
-
 
 export { login, activate, registerUser };

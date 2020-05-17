@@ -46,6 +46,9 @@ const CustomNavbar = ({ hideNav = false }) => {
             <NavLink href="/tasks">Tasks</NavLink>
           </NavItem>
           <NavItem>
+            <NavLink href="/trainings">Trainings</NavLink>
+          </NavItem>
+          <NavItem>
             <NavLink href="/attendances">Attendances</NavLink>
           </NavItem>
           <NavItem>

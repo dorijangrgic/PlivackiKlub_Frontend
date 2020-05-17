@@ -43,26 +43,6 @@ const UserFormCreateContainer = () => {
       .catch(err => console.log(err));
   };
 
-  const getUser = () => {
-    console.log("user id", userId);
-
-    getSingle("users", userId)
-      .then(res => {
-        if (res.status === 401 || res.status === 403)
-          Router.push("/users/login");
-        else return res.json();
-      })
-      .then(res => {
-        if (res.message) {
-          setShowModal(true);
-          setModalMessage(res.message);
-        } else {
-          setUser(res);
-        }
-      })
-      .catch(err => console.log(err));
-  };
-
   const fillGroups = () => {
     getAll("groups", {})
       .then(res => {
