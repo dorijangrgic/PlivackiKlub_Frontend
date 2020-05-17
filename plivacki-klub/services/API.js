@@ -96,6 +96,22 @@ const create = async (data, name) => {
   return response;
 };
 
+const deleteOne = async (name, id) => {
+  const token = checkToken();
+
+  const response = await fetch(`${base_url}/${name}/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  console.log("Service", response);
+  return response;
+}
+ 
+
 export {
   base_url,
   checkUserRole,
@@ -104,5 +120,6 @@ export {
   getSingle,
   update,
   create,
-  getAllById
+  getAllById,
+  deleteOne
 };

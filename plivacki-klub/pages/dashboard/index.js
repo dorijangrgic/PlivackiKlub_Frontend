@@ -1,10 +1,20 @@
 import Layout from "../../components/layout/layout";
+import { Jumbotron } from "reactstrap";
 
 const Dashboard = () => {
   return (
-    <Layout title="Moj prvi naslov kralju">
+    <Layout title="Dashboard">
       <div>
-        <h1>ALe ale lele</h1>
+        <Jumbotron>
+          <h1 className="display-3">Hello, world!</h1>
+          <p className="lead">
+            This is an information system used for faculty purposes
+          </p>
+          <hr className="my-2" />
+          <p>
+            You can see all tables and edit/delete if you're admin or coach. 
+          </p>
+        </Jumbotron>
       </div>
     </Layout>
   );

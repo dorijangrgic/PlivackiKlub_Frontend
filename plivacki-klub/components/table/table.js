@@ -24,18 +24,12 @@ const TableComponent = ({
   name,
   actions,
   queryParams,
-  updateFilterAndPagination
+  updateFilterAndPagination,
+  addNewFlag,
+  addNew,
+  actionClick
 }) => {
-  const addNew = () => {
-    console.log(`Dodajem novi ${name}`);
-    Router.push(`/${name}/create`);
-  };
-
-  const actionClick = (action, id) => {
-    console.log("Akcija", action, id);
-    Router.push(`/${name}/${action}/${id}`);
-  };
-
+  
   return (
     <>
       <Container>
@@ -43,7 +37,7 @@ const TableComponent = ({
           <Col md={6} className={styles.textLeft}>
             {name}
           </Col>
-          {name === "attendances" ? null : (
+          {name === "attendances" || addNewFlag === false ? null : (
             <Col md={6} className={styles.textRight}>
               <Button onClick={addNew}>Add new</Button>
             </Col>

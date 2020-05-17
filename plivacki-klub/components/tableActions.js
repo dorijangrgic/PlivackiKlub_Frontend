@@ -6,6 +6,8 @@ const taskActions = ["edit", "delete"];
 const attendanceActions = ["edit", "delete"];
 const notifActions = ["edit", "delete"];
 
+// users, groups, attendances, tasks => 4
+
 export {
   clubActions,
   groupActions,
